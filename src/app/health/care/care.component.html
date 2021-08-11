@@ -1,0 +1,23 @@
+<!-- Interpolation -->
+<p>Hello {{name}}</p>
+
+<!-- property binding -->
+<input value="text" [disabled] = "input"> 
+
+<!-- Event Binding -->
+<button (click)="onClick($event)">Submit</button>
+{{greet}}
+
+<!-- Two way binding -->
+<input id="name1" type="text" [(ngModel)]="name1" />{{name1}}
+
+<!-- directive -->
+<h3 *ngIf = "displayName; else elseBlock">
+    Hello! I am mukul</h3>
+<!-- if displayName is false this elseBlock will execute     -->
+<ng-template #elseBlock>
+    <h3>Name is Hidden</h3>
+</ng-template>   
+<div *ngFor = "let color of colors; index as i">
+    <h3>{{i}} {{color}}</h3>
+</div>
