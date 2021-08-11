@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { CareComponent } from './care/care.component';
 import { HomeComponent } from './home/home.component';
 import { ContactComponent } from './contact/contact.component';
+import { PolicyComponent } from './policy/policy.component';
 
 
 
@@ -11,7 +12,8 @@ import { ContactComponent } from './contact/contact.component';
   declarations: [
     CareComponent,
     HomeComponent,
-    ContactComponent
+    ContactComponent,
+    PolicyComponent
   ],
   imports: [
     CommonModule,
