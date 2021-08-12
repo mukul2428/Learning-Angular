@@ -5,6 +5,8 @@ import { CareComponent } from './care/care.component';
 import { HomeComponent } from './home/home.component';
 import { ContactComponent } from './contact/contact.component';
 import { PolicyComponent } from './policy/policy.component';
+import { LoginComponent } from './login/login.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 
 
@@ -13,14 +15,21 @@ import { PolicyComponent } from './policy/policy.component';
     CareComponent,
     HomeComponent,
     ContactComponent,
-    PolicyComponent
+    PolicyComponent,
+    LoginComponent,
+    PageNotFoundComponent
   ],
   imports: [
     CommonModule,
     FormsModule
   ],
   exports: [
-    CareComponent
+    CareComponent,
+    LoginComponent,
+    HomeComponent,
+    ContactComponent,
+    PolicyComponent,
+    PageNotFoundComponent
   ]
 })
 export class HealthModule { }
