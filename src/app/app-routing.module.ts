@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { TemplateDrivenComponent } from './form/template-driven/template-driven.component';
 import { CareComponent } from './health/care/care.component';
 import { ContactComponent } from './health/contact/contact.component';
 import { HomeComponent } from './health/home/home.component';
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'policy', component: PolicyComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'forms', component: TemplateDrivenComponent},
   // lazy loading
   // { path: 'lazy-loading', loadChildren:'./lazy-loading/lazy-loading.module#LazyLoadingModule'},
 

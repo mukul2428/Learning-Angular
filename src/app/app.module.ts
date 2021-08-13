@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { LazyLoadingModule } from './lazy-loading/lazy-loading.module';
+import { FormModule } from './form/form.module';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,7 +17,8 @@ import { HealthModule } from './health/health.module';
     AppRoutingModule,
     FormsModule,
     HealthModule,
-    LazyLoadingModule
+    LazyLoadingModule,
+    FormModule
   ],
   providers: [],
   bootstrap: [AppComponent]
