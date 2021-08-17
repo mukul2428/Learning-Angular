@@ -1,0 +1,49 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+<form [formGroup]="myReactiveForm" (ngSubmit)="onSubmit()" class="container-fluid shadow rounded-3 p-3 col-md-6">
+
+    <div formGroupName="userDetails">
+        <div>
+            <label for="email" class="form-label">Email address</label>
+            <input type="email" placeholder="Enter Email ID" class="form-control" id="email" formControlName="email">
+        </div>
+        <small class="text-danger"
+            *ngIf="!myReactiveForm?.get('userDetails.email')?.valid && myReactiveForm?.get('userDetails.email')?.touched">
+            Please Enter Valid Email
+        </small>
+
+        <div class="mb-3 mt-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" placeholder="Enter Password" class="form-control" id="password"
+                formControlName="password">
+        </div>
+    </div>
+
+    <!--radio button-->
+    <div class="form-group" *ngFor="let gen of gender">
+        <input class="form-check-input" type="radio" name="gender" id="{{gen.id}}" formControlName="gender"
+            [ngModel]="defaultGender" value="{{gen.value}}">
+        <label class="mx-2 form-check-label" for="{{gen.id}}">
+            {{gen.value}}
+        </label>
+    </div>
+
+    <!--use of formarray-->
+
+    <div class="form-group mt-3" formArrayName="skills">
+        <label class="form-label">Skills</label>
+
+        <!--to add more than one skill-->
+        <ng-container *ngFor="let skill of myReactiveForm.get('skills')?.['controls']; index as i">
+            <input type="text" class="form-control mb-2" autocomplete="off" placeholder="Add Skills"
+                formControlName="{{i}}">
+        </ng-container>
+
+        <button (click)="onAddSkills()" type="button" class="btn btn-warning btn-sm btn-add mt-2">+ Add Skill</button>
+    </div>
+
+    <button type="submit" class="btn btn-success mt-3">Submit</button>
+
+    <button (click)="btnClick()" type="button" class="btn btn-success mx-3 mt-3">Subscribe</button>
+</form>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { MessageService } from '../appServices/message.service';
 
 @Component({
   selector: 'app-template-driven',
@@ -38,6 +39,12 @@ export class TemplateDrivenComponent implements OnInit {
     this.formData.gender = form.value.gender;
 
     form.reset();
+  }
+
+  //services
+  btnClick(){
+    const msgService = new MessageService();
+    msgService.messageAlert();
   }
 
 }
