@@ -1,15 +1,30 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
+ 
 <button (click)="notify()" type="button" class="btn btn-success m-4">Notify Me</button>
 
 <p class="mx-4">{{product}}</p>
 
-<ng-container *ngFor="let obj of objArr">
-    <p class="mx-4">Name: {{obj.name}} Id: {{obj.id}}</p>
-</ng-container>
-<hr>
-<ng-container *ngFor="let obj of apiFetchedData">
-    <p class="mx-4">Name: {{obj.name}} Id: {{obj.id}}</p>
-</ng-container>
+<div class="row">
+    <div class="col-md-2">
+        <ng-container *ngFor="let obj of objArr">
+            <p class="mx-4">Name: {{obj.name}}, Id: {{obj.id}}</p>
+        </ng-container>
+    </div>
 
+    <div class="col-md-10">
+        <ng-container *ngFor="let obj of apiFetchedData">
+            <p class="mx-4">Name: {{obj.name}}, Id: {{obj.id}}</p>
+        </ng-container>
+    </div>
+</div>
+
+<div class="m-3">
+    <h2>Subjects</h2>
+    <!--using placeholder for @input-->
+    <input style="height: 10%; padding: 10px; border: 2px solid red; border-radius: 4px;" 
+    type="text" placeholder="{{placeholderText}}" #subVar>
+    
+    <button (click)="updateVar(subVar)" class="btn btn-success mx-2">Change</button>
+    <br><br><p>{{subjectVar}}</p>
+</div>

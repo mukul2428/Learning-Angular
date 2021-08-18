@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DepInjectComponent } from './form/dep-inject/dep-inject.component';
+import { MergecmpComponent } from './form/mergecmp/mergecmp.component';
 import { ReactiveFormComponent } from './form/reactive-form/reactive-form.component';
 import { TemplateDrivenComponent } from './form/template-driven/template-driven.component';
 import { CareComponent } from './health/care/care.component';
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'template-form', component: TemplateDrivenComponent},
   { path: 'reactive-form', component: ReactiveFormComponent},
   { path: 'dep-inject', component: DepInjectComponent},
+  { path: 'merge-cmp', component: MergecmpComponent},
   // lazy loading
   // { path: 'lazy-loading', loadChildren:'./lazy-loading/lazy-loading.module#LazyLoadingModule'},
 

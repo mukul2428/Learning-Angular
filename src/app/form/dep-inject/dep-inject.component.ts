@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { DesignutilityService } from '../appServices/designutility.service';
 
 @Component({
@@ -8,9 +8,12 @@ import { DesignutilityService } from '../appServices/designutility.service';
 })
 export class DepInjectComponent implements OnInit {
 
-  //using service by dependency injection
-  constructor(private _msgService: DesignutilityService) { }
-
+  //using subjects by injecting services
+  constructor(private _msgService: DesignutilityService) { 
+    this._msgService.subjectVar.subscribe(subVar => {
+      this.subjectVar = subVar;
+    })
+  }
   //for getting variable from service
   product = "";
 
@@ -25,8 +28,17 @@ export class DepInjectComponent implements OnInit {
     .subscribe(apiData => this.apiFetchedData = apiData);
   }
 
+  //for subjects(changing value in every component)
+  subjectVar: string = "mukul"
+  updateVar(subVar){
+    this._msgService.subjectVar.next(subVar.value);
+  }
+
   notify() {
     this._msgService.messageAlert();
   }
+
+  //to access this variable outside
+  @Input() placeholderText:string ="UserName";
 
 }

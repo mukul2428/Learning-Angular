@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ControlContainer, FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Subject } from 'rxjs';
+import { DesignutilityService } from '../appServices/designutility.service';
 import { MessageService } from '../appServices/message.service';
 
 
@@ -18,8 +20,6 @@ export class ReactiveFormComponent implements OnInit {
 
   //added "!" to get rid of initialization 
   myReactiveForm!: FormGroup
-
-  constructor() { }
 
   ngOnInit(): void {
     this.myReactiveForm = new FormGroup({
@@ -46,6 +46,16 @@ export class ReactiveFormComponent implements OnInit {
   btnClick(){
     const msgService = new MessageService();
     msgService.messageAlert();
+  }
+
+   //for subjects
+   subjectVar: string = "mukul"
+
+  //using subjects by injecting services
+  constructor(private _msgService: DesignutilityService) { 
+    this._msgService.subjectVar.subscribe(subVar => {
+      this.subjectVar = subVar;
+    })
   }
 
 }

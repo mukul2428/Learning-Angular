@@ -4,13 +4,15 @@ import { TemplateDrivenComponent } from './template-driven/template-driven.compo
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ReactiveFormComponent } from './reactive-form/reactive-form.component';
 import { DepInjectComponent } from './dep-inject/dep-inject.component';
+import { MergecmpComponent } from './mergecmp/mergecmp.component';
 
 
 @NgModule({
   declarations: [
     TemplateDrivenComponent,
     ReactiveFormComponent,
-    DepInjectComponent
+    DepInjectComponent,
+    MergecmpComponent
   ],
   imports: [
     CommonModule,
