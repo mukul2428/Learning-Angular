@@ -4,10 +4,12 @@ import { FormsModule } from '@angular/forms';
 import { LazyLoadingModule } from './lazy-loading/lazy-loading.module';
 import { FormModule } from './form/form.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HealthModule } from './health/health.module';
+import { DesignutilityService } from './form/appServices/designutility.service';
 
 @NgModule({
   declarations: [
@@ -20,9 +22,10 @@ import { HealthModule } from './health/health.module';
     HealthModule,
     LazyLoadingModule,
     FormModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [DesignutilityService],
   bootstrap: [AppComponent]
 })
 export class AppModule { 

@@ -3,12 +3,14 @@ import { CommonModule } from '@angular/common';
 import { TemplateDrivenComponent } from './template-driven/template-driven.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ReactiveFormComponent } from './reactive-form/reactive-form.component';
+import { DepInjectComponent } from './dep-inject/dep-inject.component';
 
 
 @NgModule({
   declarations: [
     TemplateDrivenComponent,
-    ReactiveFormComponent
+    ReactiveFormComponent,
+    DepInjectComponent
   ],
   imports: [
     CommonModule,
@@ -16,7 +18,8 @@ import { ReactiveFormComponent } from './reactive-form/reactive-form.component';
     ReactiveFormsModule
   ],
   exports:[
-    TemplateDrivenComponent
+    TemplateDrivenComponent,
+    DepInjectComponent
   ]
 })
 export class FormModule { }
