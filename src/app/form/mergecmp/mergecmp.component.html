@@ -1,2 +1,11 @@
 <app-reactive-form></app-reactive-form>
-<app-dep-inject [placeholderText]="'Enter UserName'" ></app-dep-inject>
+
+<app-dep-inject [placeholderText]="'Enter UserName'" (outputVar)="outputFun($event)">
+</app-dep-inject>
+
+<!--for @output-->
+<h3 class="m-3">@Output</h3>
+<p class="m-3">{{outputVar}}</p>
+
+<button (click)="changeChildProperty()" class="btn btn-success m-3" >Change Child Property</button>
+<button (click)="callChildMethod()" class="btn btn-success m-3" >Call Child Method</button>

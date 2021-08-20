@@ -27,4 +27,12 @@
     
     <button (click)="updateVar(subVar)" class="btn btn-success mx-2">Change</button>
     <br><br><p>{{subjectVar}}</p>
+
+    <h3>ViewChild</h3>
+    <div #viewChildBox>
+        <p>Happy Learning Angular!!</p>
+    </div>
+    <p style="display: inline;" class="mt-2">UserName: {{defaultName}}</p>
+    <button (click)="alertBtn()" class="btn btn-success mx-3">Alert</button>
+
 </div>
