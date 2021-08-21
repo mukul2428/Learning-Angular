@@ -1,6 +1,8 @@
 <app-reactive-form></app-reactive-form>
 
 <app-dep-inject [placeholderText]="'Enter UserName'" (outputVar)="outputFun($event)">
+    <!--content child-->
+    <p #child>This is modified ng-content Paragraph</p>
 </app-dep-inject>
 
 <!--for @output-->

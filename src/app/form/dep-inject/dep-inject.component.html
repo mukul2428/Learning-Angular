@@ -19,7 +19,7 @@
     </div>
 </div>
 
-<div class="m-3">
+<div class="m-3" appTestdirective>
     <h2>Subjects</h2>
     <!--using placeholder for @input-->
     <input style="height: 10%; padding: 10px; border: 2px solid red; border-radius: 4px;" 
@@ -34,5 +34,11 @@
     </div>
     <p style="display: inline;" class="mt-2">UserName: {{defaultName}}</p>
     <button (click)="alertBtn()" class="btn btn-success mx-3">Alert</button>
+    <!--child content-->
+    <ng-content></ng-content>
+
+    <!--use of viewchild with directive-->
+    <button (click)="changeColor('blue')" class="btn btn-success">Blue</button> &nbsp;
+    <button (click)="changeColor('green')" class="btn btn-success">Green</button>
 
 </div>

@@ -1,4 +1,5 @@
-import { Component, Input, OnInit, Output, EventEmitter, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter, ViewChild, ElementRef, AfterViewInit, Renderer2, ContentChild } from '@angular/core';
+import { TestdirectiveDirective } from '../appDirectives/testdirective.directive';
 import { DesignutilityService } from '../appServices/designutility.service';
 
 @Component({
@@ -9,15 +10,29 @@ import { DesignutilityService } from '../appServices/designutility.service';
 export class DepInjectComponent implements OnInit, AfterViewInit {
 
 
+  //for content child
+  @ContentChild('child') childPara!:ElementRef
+
   //viewchild
   @ViewChild('viewChildBox', { static: true }) box!: ElementRef;
   defaultName:string = "Mukul Raghav"
   alertBtn(){
     alert(this.defaultName);
+    //for content child
+    var text = this.renderer.createText(' This text is created by renderer');
+    this.renderer.appendChild(this.childPara.nativeElement,text);
   }
 
-  //using subjects by injecting services
-  constructor(private _msgService: DesignutilityService) { 
+  //view child with directive
+  @ViewChild(TestdirectiveDirective) myDir;
+  changeColor(color){
+    this.myDir.changeBg(color);
+  }
+
+
+  //using subjects by injecting services, renderer2
+  constructor(private _msgService: DesignutilityService,
+    private renderer : Renderer2) { 
     this._msgService.subjectVar.subscribe(subVar => {
       this.subjectVar = subVar;
     })
@@ -44,6 +59,13 @@ export class DepInjectComponent implements OnInit, AfterViewInit {
     this.box.nativeElement.style.backgroundColor = "blue"
     this.box.nativeElement.classList = "boxBlue"
     this.box.nativeElement.innerHTML = "modified by viewChild"
+
+    this.renderer.setStyle(this.box.nativeElement,'backgroundColor','red');
+    this.renderer.addClass(this.box.nativeElement, 'myClass');
+    this.renderer.setAttribute(this.box.nativeElement, 'title', 'This is test title');
+
+    //for content child
+    this.renderer.setStyle(this.childPara.nativeElement, 'color','red');
   }
 
   notify() {

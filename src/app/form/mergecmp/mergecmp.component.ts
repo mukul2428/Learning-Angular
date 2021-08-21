@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { DepInjectComponent } from '../dep-inject/dep-inject.component';
 
 @Component({
@@ -6,9 +6,7 @@ import { DepInjectComponent } from '../dep-inject/dep-inject.component';
   templateUrl: './mergecmp.component.html',
   styleUrls: ['./mergecmp.component.css']
 })
-export class MergecmpComponent implements OnInit {
-
-  constructor() { }
+export class MergecmpComponent implements OnInit{
 
   outputVar:any;
 
@@ -21,7 +19,6 @@ export class MergecmpComponent implements OnInit {
 
   //for viewchild
   @ViewChild(DepInjectComponent) child!:DepInjectComponent;
-
   changeChildProperty(){
     this.child.defaultName = "Raghav Mukul"
   }
