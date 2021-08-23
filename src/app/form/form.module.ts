@@ -6,6 +6,7 @@ import { ReactiveFormComponent } from './reactive-form/reactive-form.component';
 import { DepInjectComponent } from './dep-inject/dep-inject.component';
 import { MergecmpComponent } from './mergecmp/mergecmp.component';
 import { TestdirectiveDirective } from './appDirectives/testdirective.directive';
+import { TestPipe } from './appPipes/test.pipe';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { TestdirectiveDirective } from './appDirectives/testdirective.directive'
     ReactiveFormComponent,
     DepInjectComponent,
     MergecmpComponent,
-    TestdirectiveDirective
+    TestdirectiveDirective,
+    TestPipe
   ],
   imports: [
     CommonModule,
@@ -23,7 +25,8 @@ import { TestdirectiveDirective } from './appDirectives/testdirective.directive'
   ],
   exports:[
     TemplateDrivenComponent,
-    DepInjectComponent
+    DepInjectComponent,
+    TestPipe
   ]
 })
 export class FormModule { }

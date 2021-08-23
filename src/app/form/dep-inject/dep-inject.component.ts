@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Output, EventEmitter, ViewChild, ElementRef, AfterViewInit, Renderer2, ContentChild } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter, ViewChild, ElementRef, AfterViewInit, Renderer2, ContentChild, HostListener } from '@angular/core';
 import { TestdirectiveDirective } from '../appDirectives/testdirective.directive';
 import { DesignutilityService } from '../appServices/designutility.service';
 
@@ -11,7 +11,7 @@ export class DepInjectComponent implements OnInit, AfterViewInit {
 
 
   //for content child
-  @ContentChild('child') childPara!:ElementRef
+  @ContentChild('child', { static: false })  childPara!:ElementRef
 
   //viewchild
   @ViewChild('viewChildBox', { static: true }) box!: ElementRef;
@@ -65,7 +65,7 @@ export class DepInjectComponent implements OnInit, AfterViewInit {
     this.renderer.setAttribute(this.box.nativeElement, 'title', 'This is test title');
 
     //for content child
-    this.renderer.setStyle(this.childPara.nativeElement, 'color','red');
+    this.renderer.setStyle(this.childPara.nativeElement, 'color','blue');
   }
 
   notify() {
@@ -85,5 +85,13 @@ export class DepInjectComponent implements OnInit, AfterViewInit {
     //for @output
     this.outputVar.emit(this.subjectVar);
   }
+
+  //use hostlistener with directives
+  @HostListener('window:scroll',['$event']) myScroll(){
+    console.log("Scrolling");
+  }
+
+  //pipe
+  value = "This is test pipe"
 
 }
