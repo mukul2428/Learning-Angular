@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FirebasedataService } from '../appServices/firebasedata.service';
 
 @Component({
   selector: 'app-manage-product',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ManageProductComponent implements OnInit {
 
-  constructor() { }
+  //inject service
+  constructor(private _firebaseData: FirebasedataService) { }
 
   ngOnInit(): void {
+    //this will fetch data every time our page loads
+    this.onFetchProduct();
   }
 
   dataTitle = "Product Added"
@@ -32,7 +36,13 @@ export class ManageProductComponent implements OnInit {
   ]
 
   onSaveProduct(){
-
+    //getting "saveProducts" method from service
+    //and passing "products" array to the service
+    //subscribing to observable
+    this._firebaseData.saveProducts(this.products).subscribe(
+      (response) => console.log(response),
+      (err) => console.log(err)
+    );
   }
   onAddProduct(id, name, price){
     this.products.push({
@@ -42,7 +52,14 @@ export class ManageProductComponent implements OnInit {
     })
   }
   onFetchProduct(){
-
+    this._firebaseData.fetchProducts().subscribe(
+      (response) => {
+        //stringify and parsed our response data
+        const data = JSON.stringify(response);
+        this.products = JSON.parse(data);
+      },
+      (err) => console.log(err)
+    )
   }
   onDeleteProduct(i){
     if(confirm('Do you want to delete this product?')){

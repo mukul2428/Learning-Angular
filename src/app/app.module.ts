@@ -10,6 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HealthModule } from './health/health.module';
 import { DesignutilityService } from './form/appServices/designutility.service';
+import { FirebasedataService } from './form/appServices/firebasedata.service';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,7 @@ import { DesignutilityService } from './form/appServices/designutility.service';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [DesignutilityService],
+  providers: [DesignutilityService, FirebasedataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { 
