@@ -1,0 +1,12 @@
+ul{
+    display:  flex;
+    background-color: aliceblue;
+    list-style-type: none;
+}
+ul li{
+    padding: 20px;
+}
+a{
+    text-decoration: none;
+    margin: 20px;
+}

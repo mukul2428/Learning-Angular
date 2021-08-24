@@ -7,6 +7,7 @@ import { DepInjectComponent } from './dep-inject/dep-inject.component';
 import { MergecmpComponent } from './mergecmp/mergecmp.component';
 import { TestdirectiveDirective } from './appDirectives/testdirective.directive';
 import { TestPipe } from './appPipes/test.pipe';
+import { ManageProductComponent } from './manage-product/manage-product.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { TestPipe } from './appPipes/test.pipe';
     DepInjectComponent,
     MergecmpComponent,
     TestdirectiveDirective,
-    TestPipe
+    TestPipe,
+    ManageProductComponent
   ],
   imports: [
     CommonModule,
