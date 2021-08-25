@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FirebasedataService } from '../appServices/firebasedata.service';
 
 @Component({
@@ -16,10 +16,10 @@ export class ManageProductComponent implements OnInit {
     this.onFetchProduct();
   }
 
-  dataTitle:string = "Product Added";
-  fetching:boolean = false;
+  dataTitle: string = "Product Added";
+  fetching: boolean = false;
 
-  products =[
+  products = [
     {
       id: 'p1',
       name: 'Laptop',
@@ -37,7 +37,7 @@ export class ManageProductComponent implements OnInit {
     }
   ]
 
-  onSaveProduct(){
+  onSaveProduct() {
     //getting "saveProducts" method from service
     //and passing "products" array to the service
     //subscribing to observable
@@ -46,14 +46,30 @@ export class ManageProductComponent implements OnInit {
       (err) => console.log(err)
     );
   }
-  onAddProduct(id, name, price){
-    this.products.push({
-      id: id.value,
-      name: name.value,
-      price: price.value
-    })
+  onAddProduct(id, name, price) {
+
+    if (this.editMode) {
+      //changing data at that index which is selected
+      this.products[this.editIndex] = {
+        id: id.value,
+        name: name.value,
+        price: price.value
+      }
+      this.editMode = false;
+      this.id.nativeElement.value = '';
+      this.name.nativeElement.value = '';
+      this.price.nativeElement.value = '';
+    }
+    else {
+      this.products.push({
+        id: id.value,
+        name: name.value,
+        price: price.value
+      })
+    }
+    this.onSaveProduct();
   }
-  onFetchProduct(){
+  onFetchProduct() {
     this.fetching = true;
 
     this._firebaseData.fetchProducts().subscribe(
@@ -66,9 +82,26 @@ export class ManageProductComponent implements OnInit {
       (err) => console.log(err)
     )
   }
-  onDeleteProduct(i){
-    if(confirm('Do you want to delete this product?')){
-      this.products.splice(i,1);
+  onDeleteProduct(i: number) {
+    if (confirm('Do you want to delete this product?')) {
+      this.products.splice(i, 1);
+      this.onSaveProduct();
     }
+  }
+
+  editMode: boolean = false;
+  editIndex!: number;
+
+  //for editing and updating in dom we use "viewchild"
+  @ViewChild('id') id!: ElementRef;
+  @ViewChild('name') name!: ElementRef;
+  @ViewChild('price') price!: ElementRef;
+  onEditProduct(index: number) {
+    this.editMode = true;
+    this.editIndex = index;
+    //updating values of dom
+    this.id.nativeElement.value = this.products[index].id;
+    this.name.nativeElement.value = this.products[index].name;
+    this.price.nativeElement.value = this.products[index].price;
   }
 }

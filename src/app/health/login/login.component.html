@@ -1,3 +1,37 @@
-<p>login works!</p>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+    integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
+    crossorigin="anonymous" />
+
 <!-- event binding -->
-<button (click)='onClick()'>Go to Home</button>
+<button class="btn btn-warning m-4" (click)='onClick()'>Go to Home</button>
+
+<div class="container border shadow">
+    <h5 class="text-center mt-3">SignIn into Insurance App</h5>
+    <!--for login-->
+    <div class="row p-3">
+        <div class="col-md-5">
+            <div class="form-group input-group mb-3">
+                <span class="input-group-text">
+                    <i class="fa fa-envelope"></i>
+                </span>
+                <input type="text" class="form-control" placeholder="Enter Email">
+                <small class="form-text w-100 text-danger" style="display: none;">Please Enter Email</small>
+            </div>
+            <div class="form-group input-group">
+                <span class="input-group-text">
+                    <i class="fa fa-lock"></i>
+                </span>
+                <input type="text" class="form-control" placeholder="Enter Password">
+                <small class="form-text w-100 text-danger" style="display: none;">Please Enter Password</small>
+            </div>
+            <div class="form-group mt-3">
+                <button type="button" class="btn btn col-12 btn-outline-primary">SignIn</button>
+            </div>
+            {{loginMode}}
+            <p class="mb-0">Don't have account? <a href="#" (click)="onModeSwitch()" >Create one</a></p>
+            <a href="#">Forgot Password?</a>
+        </div>
+    </div>
+</div>

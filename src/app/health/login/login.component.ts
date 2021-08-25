@@ -18,5 +18,9 @@ export class LoginComponent implements OnInit {
     this.router.navigate(['home']);
   }
 
+  loginMode:boolean = true;
+  onModeSwitch(){
+    this.loginMode = !this.loginMode;
+  }
 
 }
