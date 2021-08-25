@@ -41,7 +41,7 @@
                         <th scope="col">Delete</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody *ngIf="!fetching">
                     <tr *ngFor="let product of products; index as i">
                         <th scope="row">{{i+1}}</th>
                         <td>{{product.id}}</td>
@@ -52,6 +52,13 @@
                     </tr>
                 </tbody>
             </table>
+            <!--fetching loader-->
+            <div *ngIf="fetching" class="text-center">
+                <div style="position: absolute;" class="spinner-border text-warning" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+                <span style="padding-left: 40px;">Fetching Products...</span>
+            </div>
         </div>
     </div>
 </div>

@@ -16,7 +16,9 @@ export class ManageProductComponent implements OnInit {
     this.onFetchProduct();
   }
 
-  dataTitle = "Product Added"
+  dataTitle:string = "Product Added";
+  fetching:boolean = false;
+
   products =[
     {
       id: 'p1',
@@ -52,11 +54,14 @@ export class ManageProductComponent implements OnInit {
     })
   }
   onFetchProduct(){
+    this.fetching = true;
+
     this._firebaseData.fetchProducts().subscribe(
       (response) => {
         //stringify and parsed our response data
         const data = JSON.stringify(response);
         this.products = JSON.parse(data);
+        this.fetching = false;
       },
       (err) => console.log(err)
     )
