@@ -6,7 +6,8 @@
     <div formGroupName="userDetails">
         <div>
             <label for="email" class="form-label">Email address</label>
-            <input type="email" placeholder="Enter Email ID" class="form-control" id="email" formControlName="email">
+            <input type="email" placeholder="Enter Email ID" class="form-control" id="email" 
+            formControlName="email">
         </div>
         <small class="text-danger"
             *ngIf="!myReactiveForm?.get('userDetails.email')?.valid && myReactiveForm?.get('userDetails.email')?.touched">

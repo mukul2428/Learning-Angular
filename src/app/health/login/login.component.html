@@ -8,30 +8,53 @@
 <button class="btn btn-warning m-4" (click)='onClick()'>Go to Home</button>
 
 <div class="container border shadow">
-    <h5 class="text-center mt-3">SignIn into Insurance App</h5>
+
+    <h5 class="text-center mt-3">
+        {{loginMode? 'LogIn' : 'SignUp'}} into Insurance App</h5>
     <!--for login-->
+
     <div class="row p-3">
+        <!--for error message-->
+        <div *ngIf="error" class="alert alert-danger" role="alert">
+            <strong>An Error Occured : </strong> {{error}}
+        </div>
+
         <div class="col-md-5">
-            <div class="form-group input-group mb-3">
-                <span class="input-group-text">
-                    <i class="fa fa-envelope"></i>
-                </span>
-                <input type="text" class="form-control" placeholder="Enter Email">
-                <small class="form-text w-100 text-danger" style="display: none;">Please Enter Email</small>
-            </div>
-            <div class="form-group input-group">
-                <span class="input-group-text">
-                    <i class="fa fa-lock"></i>
-                </span>
-                <input type="text" class="form-control" placeholder="Enter Password">
-                <small class="form-text w-100 text-danger" style="display: none;">Please Enter Password</small>
-            </div>
-            <div class="form-group mt-3">
-                <button type="button" class="btn btn col-12 btn-outline-primary">SignIn</button>
-            </div>
-            {{loginMode}}
-            <p class="mb-0">Don't have account? <a href="#" (click)="onModeSwitch()" >Create one</a></p>
-            <a href="#">Forgot Password?</a>
+
+            <form [formGroup]="Form" (ngSubmit)="onSubmit()">
+                <div class="form-group input-group mb-3">
+                    <span class="input-group-text">
+                        <i class="fa fa-envelope"></i>
+                    </span>
+                    <input type="text" class="form-control" formControlName="email" placeholder="Enter Email">
+
+                    <small *ngIf="!Form.get('email')?.valid && Form.get('email')?.touched"
+                        class="form-text w-100 text-danger">
+                        Please Enter Email</small>
+                </div>
+                <div class="form-group input-group">
+                    <span class="input-group-text">
+                        <i class="fa fa-lock"></i>
+                    </span>
+                    <input type="password" class="form-control" formControlName="password" placeholder="Enter Password">
+
+                    <small class="form-text w-100 text-danger"
+                        *ngIf="!Form.get('password')?.valid && Form.get('password')?.touched">
+                        Please Enter Password</small>
+                </div>
+                <div class="form-group mt-3">
+                    <button type="submit" class="btn btn col-12 btn-outline-primary">
+                        {{loginMode? 'LogIn' : 'Create Account'}}
+                    </button>
+                </div>
+                <p class="mt-1 mb-0">
+                    {{loginMode? 'Don`t have account?' : 'Already have account?'}}
+                    <a style="color: #0d6efd; cursor: pointer;" (click)="onModeSwitch()">
+                        {{loginMode? 'Create one' : 'LogIn'}}</a>
+                </p>
+                <a style="color: #0d6efd; cursor: pointer;">Forgot Password?</a>
+            </form>
+
         </div>
     </div>
 </div>
