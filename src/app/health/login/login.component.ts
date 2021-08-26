@@ -45,15 +45,17 @@ export class LoginComponent implements OnInit {
         authObservable = this._authService.signUp(email, password);
       }
       authObservable.subscribe(
-        res => { console.log(res); },
-        err => { 
-          console.log(err); 
+        res => {
+           console.log(res); 
+           this.router.navigate(['home']);
+        },
+        err => {
+          console.log(err);
           //get error message
-          this.error = err.error.error.message;
+          // this.error = err.error.error.message;
+          this.error = err;
         }
       )
-
-
     }
     else {
 
