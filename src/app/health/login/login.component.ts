@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
       }
       authObservable.subscribe(
         res => {
-           console.log(res); 
+          //  console.log(res); 
            this.router.navigate(['home']);
         },
         err => {

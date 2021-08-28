@@ -10,6 +10,8 @@ export class HomeComponent implements OnInit {
 
   //this will be true if user is loggedin
   isLoggedIn = false;
+  userData!:any;
+  email:string="ss";
 
   constructor(private _authService:AuthService) { }
 
@@ -22,6 +24,12 @@ export class HomeComponent implements OnInit {
           this.isLoggedIn = false;
         }
       })
+      console.log(this.isLoggedIn);
+      if(this.isLoggedIn){
+        this.userData = JSON.parse(localStorage.getItem('UserData')!);
+        this.email = this.userData.email;
+        console.log("xscc",this.email);
+    }
   }
 
 }
