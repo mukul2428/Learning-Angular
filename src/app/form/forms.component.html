@@ -1,0 +1,74 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+<form [formGroup]="myReactiveForm" (ngSubmit)="onSubmit(myReactiveForm)"
+    class="container col-md-6 my-5 p-4 shadow rounded-3">
+    <label class="form-label" for="name">Name:</label>
+    <input class="form-control" id="name" type="text" placeholder="Enter your full name" formControlName="name">
+    <small *ngIf="!myReactiveForm.get('name')?.valid && myReactiveForm.get('name')?.touched" class="text-danger">Please
+        Enter Name</small><br>
+
+    <label class="form-label" for="email">Email ID:</label>
+    <input class="form-control" id="email" type="email" placeholder="Enter your Email ID" formControlName="email">
+    <small *ngIf="!myReactiveForm.get('email')?.valid && myReactiveForm.get('email')?.touched"
+        class="text-danger">Please Enter Correct Email</small><br>
+
+    <label class="form-label" for="password">Password:</label>
+    <input class="form-control" id="password" type="password" placeholder="Enter your Password"
+        formControlName="password">
+    <small *ngIf="!myReactiveForm.get('password')?.valid && myReactiveForm.get('password')?.touched"
+        class="text-danger">Please Enter Valid Password</small><br>
+
+    <label class="form-label" for="phno">Mobile Number:</label>
+    <input class="form-control" id="phno" type="number" placeholder="Enter your Mobile Number" formControlName="phno">
+    <small *ngIf="!myReactiveForm.get('phno')?.valid && myReactiveForm.get('phno')?.touched" class="text-danger">Please
+        Enter Valid Mobile Number</small><br>
+
+    <label class="form-label" for="city">City:</label>
+    <input class="form-control" id="city" type="text" placeholder="Enter your City" formControlName="city">
+    <small *ngIf="!myReactiveForm.get('city')?.valid && myReactiveForm.get('city')?.touched" class="text-danger">Please
+        Enter Your City</small><br>
+
+    <div formArrayName="family">
+
+        <h5 class="mt-3">Family</h5>
+        <button (click)="onAddMember()" class="btn btn-primary" type="button">Add Another</button> &nbsp;
+        <button (click)="removeFamily()" class="btn btn-danger" type="button">Remove</button><br>
+
+        <div *ngFor="let member of familyMember.controls; let i=index;" [formGroupName]="i">
+
+            <label class="form-label mt-3" for="relation">Relation:</label>
+            <input class="form-control" id="relation" type="text" placeholder="Enter Relation"
+                formControlName="relation">
+            <small
+                *ngIf="!myReactiveForm.get('family.i.relation')?.valid && myReactiveForm.get('family.i.relation')?.touched"
+                class="text-danger">Please Enter Relation</small><br>
+
+            <label class="form-label" for="rname">Name:</label>
+            <input class="form-control" id="rname" type="text" placeholder="Enter Name" formControlName="rname">
+            <small *ngIf="!myReactiveForm.get('rname')?.valid && myReactiveForm.get('rname')?.touched"
+                class="text-danger">Please Enter Name</small><br>
+
+        </div>
+    </div>
+
+    <button class="btn btn-success mt-2" type="submit">Submit</button>
+
+    <!-- <p>{{myReactiveForm.get('family')}}</p> -->
+    <div *ngIf="isSubmitted" class="mt-4">
+        <p>Name : {{formData.name}}</p>
+        <p>Email ID : {{formData.email}}</p>
+        <!-- <p>Password : {{formData.password}}</p> -->
+        <p>Mobile Number : {{formData.phno}}</p>
+        <p>City : {{formData.city}}</p>
+
+        <!-- <p>{{myReactiveForm.get('family')?.get('0')?.get('relation')?.value}}</p> -->
+
+        <ng-container *ngFor="let elem of formData.family; let i=index">
+            <h6 class="mt-3">Family Member {{i+1}}:</h6>
+            <p>Relation : {{elem.relation}}</p>
+            <p>Name : {{elem.rname}}</p>
+        </ng-container>
+
+    </div>
+</form>
